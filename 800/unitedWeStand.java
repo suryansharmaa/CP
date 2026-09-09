@@ -1,0 +1,79 @@
+import java.io.*;
+import java.util.*;
+
+public class unitedWeStand {
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() { return Integer.parseInt(next()); }
+        long nextLong() { return Long.parseLong(next()); }
+        double nextDouble() { return Double.parseDouble(next()); }
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+
+    public static void main(String[] args) {
+        FastReader sc = new FastReader();
+        PrintWriter out = new PrintWriter(System.out);
+
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            solve(sc, out);
+        }
+
+        out.flush();
+        out.close();
+    }
+
+    public static void solve(FastReader sc, PrintWriter out) {
+        int n = sc.nextInt();
+        int[] a = new int[n];
+        for(int i = 0; i < n; i++) a[i] = sc.nextInt();
+
+        Arrays.sort(a);
+
+        List<Integer> b = new ArrayList<>();
+        List<Integer> c = new ArrayList<>();
+
+        for(int i = 0; i < n; i++) {
+            if (a[i] == a[0]) b.add(a[i]);
+            else c.add(a[i]);
+        }
+
+        if (c.isEmpty()) {
+            out.println(-1);
+            return;
+        }
+
+        out.print(b.size() + " " + c.size());
+        out.println();
+        for(int num : b) out.print(num + " ");
+        out.println();
+        for(int num : c) out.print(num + " ");
+        out.println();
+    }
+}
